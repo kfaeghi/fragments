@@ -1,0 +1,21 @@
+{
+  "name": "fragments",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Fragments back-end API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kfaeghi/fragments.git"
+  },
+  "keywords": [],
+  "author": "Khashayar Faeghi",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/kfaeghi/fragments/issues"
+  },
+  "homepage": "https://github.com/kfaeghi/fragments#readme"
+}
