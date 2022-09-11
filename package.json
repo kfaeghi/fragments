@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/kfaeghi/fragments/issues"
   },
-  "homepage": "https://github.com/kfaeghi/fragments#readme"
+  "homepage": "https://github.com/kfaeghi/fragments#readme",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
 }
