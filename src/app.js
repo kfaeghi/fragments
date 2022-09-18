@@ -5,6 +5,10 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 
+//Moddifications to src/app.js lab 2
+const authorization = require('./authorization');
+const passport = require('passport');
+
 const logger = require('./logger');
 const pino = require('pino-http')({
   // Use our default logger instance, which is already configured
@@ -26,12 +30,12 @@ app.use(cors());
 // Use gzip/deflate compression middleware
 app.use(compression());
 
-// Define a simple health check route. If the server is running
-// we'll respond with a 200 OK.  If not, the server isn't healthy.
+// Set up our passport authorization middleware
+passport.use(authorization.strategy());
+app.use(passport.initialize());
 
 // modifications to src/app.js
 // Remove `app.get('/', (req, res) => {...});` and replace with:
-
 // Define our routes
 app.use('/', require('./routes'));
 
