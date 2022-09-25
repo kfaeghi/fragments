@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 
 //Moddifications to src/app.js lab 2
-const authorization = require('./authorization');
+const authorization = require('./auth/index');
 const passport = require('passport');
 
 const logger = require('./logger');

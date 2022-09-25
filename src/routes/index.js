@@ -7,7 +7,7 @@ const { version, author } = require('../../package.json');
 
 // modifications to src/routes/index.js
 // Our authorization middleware
-const { authenticate } = require('../authorization');
+const { authenticate } = require('../auth/index');
 
 // Create a router that we can use to mount our API
 const router = express.Router();
