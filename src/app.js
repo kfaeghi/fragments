@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
+const { createErrorResponse } = require('./response');
 
 //Moddifications to src/app.js lab 2
 const authorization = require('./auth/index');
@@ -40,14 +41,14 @@ app.use(passport.initialize());
 app.use('/', require('./routes'));
 
 // Add 404 middleware to handle any requests for resources that can't be found
+
+const data = {
+  message: 'not found',
+  code: 404
+}
+
 app.use((req, res) => {
-  res.status(404).json({
-    status: 'error',
-    error: {
-      message: 'not found',
-      code: 404,
-    },
-  });
+  res.status(404).json(createErrorResponse(data.code, data.message));
 });
 
 // Add error-handling middleware to deal with anything else
@@ -63,13 +64,7 @@ app.use((err, req, res, next) => {
     logger.error({ err }, `Error processing request`);
   }
 
-  res.status(status).json({
-    status: 'error',
-    error: {
-      message,
-      code: status,
-    },
-  });
+  res.status(status).json(createErrorResponse(status, message));
 });
 
 // Export our `app` so we can access it in server.js
