@@ -13,10 +13,8 @@ describe('GET /v1/fragments', () => {
     // Using a valid username/password pair should give a success result with a .fragments array
     test('authenticated users get a fragments array', async () => {
       const res = await request(app).post('/v1/fragments').auth('user1@email.com', 'password1').set('Content-Type', 'text/plain').send('This is a fragment');
-      console.log(res)
       expect(res.statusCode).toBe(201);
       expect(res.body.status).toBe('ok');
-      //expect(Array.isArray(res.body.fragments)).toBe(true);
     });
   
     // TODO: we'll need to add tests to check the contents of the fragments array later
