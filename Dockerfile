@@ -1,13 +1,11 @@
 # Use node version 16.15.1
-FROM node:16.14.2 AS dependencies
+FROM node:16.14-alpine
 
 # Use /app as our working directory
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files into /app
 COPY package*.json /app/
-
-RUN npm ci --only=production
 
 # Copy src to /app/src/
 COPY ./src ./src
@@ -42,6 +40,4 @@ LABEL maintainer="Kash Faeghi <kfaeghi@myseneca.ca>"
 LABEL description="Fragments node.js microservice"
 
 #########################################################
-FROM node:16.14.2-alpine AS production
-COPY --chown=node:node --from=dependencies \
-    /app/node_modules /app/node_modules
+
