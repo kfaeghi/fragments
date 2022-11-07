@@ -39,9 +39,12 @@ const rawBody = () =>
   
   if(Fragment.isSupportedType(contentType.parse(req).type))
   {
+  
   const ownerId = require('crypto').createHash('sha256').update(req.user).digest('hex');
   const type = contentType.parse(req).type
   const size = req.body.toString().length - 1
+
+
 
   const fragment = new Fragment({
     ownerId: ownerId,
