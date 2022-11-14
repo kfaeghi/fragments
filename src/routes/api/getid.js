@@ -5,6 +5,9 @@
  */
 // Read environment variables from an .env file (if present)
 
+
+//var MarkdownIt = require('markdown-it')
+var markdown = require( "markdown" ).markdown;
 const Fragment = require('../../model/fragment').Fragment;
 
 
@@ -13,11 +16,24 @@ const Fragment = require('../../model/fragment').Fragment;
 
 module.exports = async (req, res) => {
   // TODO: this is just a placeholder to get something working.
-  
+  var params;
+  var ext;
+  var hasextension = false;
+
+  if(req.params.id.includes('.')){
+    hasextension = true;
+    ext = req.params.id.substring(req.params.id.indexOf('.') + 1);
+    params = req.params.id.substring(0, req.params.id.indexOf('.'));
+  }else{
+    params = req.params.id 
+  }
+
+
   
   var ownerId = require('crypto').createHash('sha256').update(req.user).digest('hex');
-  var metadata = await Fragment.byId(ownerId, req.params.id);
-  console.log(metadata)
+  var metadata = await Fragment.byId(ownerId, params);
+  
+  const type = metadata.type
   
   if(!metadata) { res.status(404).json(
       createErrorResponse({
@@ -29,9 +45,25 @@ module.exports = async (req, res) => {
   metadata = await metadata.getData();
   metadata = metadata.toString();
 
-  res.status(200).json(
+
+  if(hasextension)
+  {
+    if(ext == 'html' && type == 'text/plain'){
+      res.status(200);
+      res.type('html');
+      res.send(`<h1> ${metadata}</h1>`);
+  }
+    if(ext == 'html' && type == 'text/markdown'){
+      res.status(200);
+      res.type('html');
+      var htmlResult = markdown.toHTML(metadata);
+      res.send(htmlResult);
+  } 
+  }else { res.status(200).json(
     createSuccessResponse({
         status: 'ok',
         data: metadata
-  }));
+    
+      }));}
+  
 };

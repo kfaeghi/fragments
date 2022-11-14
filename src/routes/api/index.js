@@ -13,7 +13,9 @@ const router = express.Router();
 router.get('/fragments', require('./get'));
 
 router.get('/fragments/:id', require('./getid'));
+router.get('/fragments/:id/info', require('./getidinfo'));
 
+router.get('/fragments/?expand=1', require('./get'));
 // Other routes will go here later on...
 // Use a raw body parser for POST, which will give a `Buffer` Object or `{}` at `req.body`
 router.post('/fragments', rawBody(), require('./post'));

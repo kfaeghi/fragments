@@ -16,6 +16,9 @@ const {
 
 const validTypes = [
     `text/plain`,
+    `text/markdown`,
+    `text/html`,
+    `application/json`
     /*
      Currently, only text/plain is supported. Others will be added later.
   
@@ -38,9 +41,12 @@ class Fragment {
       throw 'ownerIda and type are required to create a new class!';
     else this.ownerId = ownerId;
 
-    for (let i = 0; i < validTypes.length; i++)
-      if (type.includes(validTypes[i])) this.type = type;
-      else throw 'Invalid type is passed!';
+
+    if(validTypes.includes(type) || type == 'text/plain; charset=utf-8')
+    {
+      this.type = type;
+
+    }else throw 'invalid type'
 
 
     if (typeof size != 'number' || size < 0) throw 'size must me a number and greater then -1!';
@@ -155,7 +161,11 @@ class Fragment {
    */
   get formats() {
     // TODO
-    return validTypes;
+    var type = [];
+    for (let i = 0; i < validTypes.length; ++i)
+      if (this.type.includes(validTypes[i])) type.push(validTypes[i]);
+
+    return type;
    
   }
 
@@ -170,8 +180,6 @@ class Fragment {
     for (var i = 0; i < validTypes.length; i++) {
         if(validTypes[i] == value || value == 'text/plain; charset=utf-8'){
             valid = true;
-        }else{
-            valid = false;
         }
     }
     return valid;
