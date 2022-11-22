@@ -24,7 +24,7 @@ RUN npm install
 
 
 # Metadta using LABLE "key=value" pairs for our image
-LABEL miantainer="Khashayar Faeghi <kfaeghi@myseneca.ca>" 
+LABEL miantainer="Kash Faeghi <kfaeghi@myseneca.ca>" 
 LABEL description="Fragments node.js microservice"
 
 #################################################################################################
