@@ -62,7 +62,7 @@ const rawBody = () =>
   //console.log(size)
   //console.log(type);
   //console.log(ownerId)
-  res.append('Location', process.env.API_URL + '/v1/fragments/' + fragment.id)
+  res.setHeader('Location', process.env.API_URL + '/v1/fragments/' + fragment.id)
   res.status(201).json(
     createSuccessResponse({
     status: 'ok',

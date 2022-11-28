@@ -11,7 +11,8 @@
     "lint": "eslint --config .eslintrc.js src/** tests/**",
     "start": "node src/index.js",
     "dev": "cross-env LOG_LEVEL=debug nodemon ./src/index.js --watch src",
-    "debug": "cross-env LOG_LEVEL=debug nodemon --inspect=0.0.0.0:9229 ./src/index.js --watch src"
+    "debug": "cross-env LOG_LEVEL=debug nodemon --inspect=0.0.0.0:9229 ./src/index.js --watch src",
+    "test:integration": "hurl --test --glob \"tests/integration/**/*.hurl\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/kfaeghi/fragments#readme",
   "devDependencies": {
+    "@orangeopensource/hurl": "^1.8.0",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "content-type": "^1.0.4",

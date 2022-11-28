@@ -59,11 +59,9 @@ module.exports = async (req, res) => {
       var htmlResult = markdown.toHTML(metadata);
       res.send(htmlResult);
   } 
-  }else { res.status(200).json(
-    createSuccessResponse({
-        status: 'ok',
-        data: metadata
-    
-      }));}
+  }else {
+      res.setHeader('Content-Type', type)
+      res.send(metadata)
+  }
   
 };
