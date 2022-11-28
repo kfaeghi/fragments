@@ -12,7 +12,7 @@ const Fragment = require('../../model/fragment').Fragment;
 
 
 
- const { createSuccessResponse, createErrorResponse } = require('../../response');
+ const {createErrorResponse } = require('../../response');
 
 module.exports = async (req, res) => {
   // TODO: this is just a placeholder to get something working.
@@ -61,6 +61,7 @@ module.exports = async (req, res) => {
   } 
   }else {
       res.setHeader('Content-Type', type)
+      res.status(200);
       res.send(metadata)
   }
   
