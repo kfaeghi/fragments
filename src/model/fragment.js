@@ -84,7 +84,7 @@ class Fragment {
   static async byId(ownerId, id) {
     // TODO
     const result = await readFragment(ownerId, id)
-    if(result == undefined || result == null)
+    if(result == undefined || result == null || result == 'unable to read fragment data')
         throw Error()
     return result
   }
@@ -117,6 +117,7 @@ class Fragment {
   async getData() {
     // TODO
     var obj = await readFragmentData(this.ownerId, this.id);
+    
     return Buffer.from(obj)
     
   }

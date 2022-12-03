@@ -32,6 +32,15 @@ module.exports = async (req, res) => {
   
   var ownerId = require('crypto').createHash('sha256').update(req.user).digest('hex');
   var metadata = await Fragment.byId(ownerId, params);
+
+  console.log("------------------------ Owner ID \n" + ownerId);
+
+  console.log("------------------------ Params ID \n" + params);
+
+
+  console.log("================================ \n")
+
+  console.log("================================ \n" + JSON.stringify(metadata))
   
   const type = metadata.type
   
