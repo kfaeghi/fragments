@@ -87,7 +87,9 @@ class Fragment {
     if(result == undefined || result == null || result == 'unable to read fragment data'){
         Promise.resolve(undefined)
         return result
-      }else return new Fragment(result);
+      }
+
+    else return new Fragment(result);
   }
 
   /**
