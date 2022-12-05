@@ -84,9 +84,10 @@ class Fragment {
   static async byId(ownerId, id) {
     // TODO
     const result = await readFragment(ownerId, id)
-    if(result == undefined || result == null || result == 'unable to read fragment data')
-        throw Error()
-    return result
+    if(result == undefined || result == null || result == 'unable to read fragment data'){
+        Promise.resolve(undefined)
+        return result
+      }else return new Fragment(result);
   }
 
   /**

@@ -12,15 +12,9 @@ module.exports = async (req, res) => {
   var id = req.params.id;
   //console.log(metadata);
 
-  console.log("------------------------ Owner ID \n" + ownerID);
-
-  console.log("------------------------ Fragment ID \n" + id);
 
 
   deleteData = await Fragment.delete(ownerID, id);
-  console.log("================================ \n")
-
-  console.log("================================ \n" + JSON.stringify(deleteData))
 
 
   if (deleteData != "deleted") {

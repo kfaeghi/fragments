@@ -17,18 +17,23 @@ module.exports = async (req, res) => {
   
   var ownerId = require('crypto').createHash('sha256').update(req.user).digest('hex');
   var metadata = await Fragment.byId(ownerId, req.params.id);
-  //console.log(metadata)
-  
-  if(!metadata) { res.status(404).json(
+
+
+  if(metadata == undefined) {
+    console.warn("Framgent is not found => " + metadata)
+    res.status(404).json(
+      createErrorResponse({
+        status: 404,
+        err: "Metadata with given id does not exist"
+      }))
+  }else if(!metadata) { res.status(404).json(
     createErrorResponse({
       status: 404,
       err: "Metadata with given id does not exist"
     })
-)}
-  
-  res.status(200).json(
+)}else{res.status(200).json(
     createSuccessResponse({
         status: 'ok',
         data: metadata
-  }));
+  }));}
 };
