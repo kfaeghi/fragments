@@ -42,6 +42,7 @@ module.exports = async (req, res) => {
   )}
 
   var dataText = await metadata.getData();
+  dataText = dataText.toString();
 
   if(hasextension)
   {
