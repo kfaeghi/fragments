@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
   //console.log(metadata)
 
   
-  if(metadata.catch) { res.status(404).json(
+  if(!metadata) { res.status(404).json(
       createErrorResponse({
         status: 404,
         err: "Metadata with given id does not exist"

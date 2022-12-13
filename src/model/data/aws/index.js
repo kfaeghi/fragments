@@ -46,7 +46,7 @@ async function readFragment(ownerId, id) {
 
     // Wait for the data to come back from AWS
     await sleep(100);
-    console.log(await ddbDocClient.send(command))
+    //console.log(await ddbDocClient.send(command))
     const data = await ddbDocClient.send(command);
     await sleep(100);
 

@@ -29,6 +29,8 @@ module.exports = async (req, res) => {
   
   var ownerId = require('crypto').createHash('sha256').update(req.user).digest('hex');
   var metadata = await Fragment.byId(ownerId, params);
+
+  console.log(metadata+ "--------------------------------------")
   
   const type = metadata.type
   
@@ -39,27 +41,25 @@ module.exports = async (req, res) => {
       })
   )}
 
-  metadata = await metadata.getData();
-  metadata = metadata.toString();
-
+  var dataText = await metadata.getData();
 
   if(hasextension)
   {
     if(ext == 'html' && type == 'text/plain'){
       res.status(200);
       res.type('html');
-      res.send(`<h1> ${metadata}</h1>`);
+      res.send(`<h1> ${dataText}</h1>`);
   }
     if(ext == 'html' && type == 'text/markdown'){
       res.status(200);
       res.type('html');
-      var htmlResult = markdown.toHTML(metadata);
+      var htmlResult = markdown.toHTML(dataText);
       res.send(htmlResult);
   } 
   }else {
       res.setHeader('Content-Type', type)
       res.status(200);
-      res.send(metadata)
+      res.send(dataText)
   }
   
 };

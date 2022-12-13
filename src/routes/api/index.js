@@ -5,6 +5,7 @@
  */
 const express = require('express');
 const rawBody = require('./post').rawBody
+const rawBodyPUT = require('./put').rawBodyPUT
 
 // Create a router on which to mount our API endpoints
 const router = express.Router();
@@ -20,6 +21,7 @@ router.get('/fragments/?expand=1', require('./get'));
 // Use a raw body parser for POST, which will give a `Buffer` Object or `{}` at `req.body`
 router.post('/fragments', rawBody(), require('./post'));
 router.delete('/fragments/:id', require('./deleteid'));
+router.put('/fragments/:id', rawBodyPUT(), require('./put'));
 
 
 
